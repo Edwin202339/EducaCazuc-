@@ -1,0 +1,78 @@
+/* Sections */
+.features {
+    padding: 100px 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.learning-paths {
+    padding: 100px 0;
+    background: linear-gradient(to bottom, #f0f4f8, #e8f0f8);
+}
+
+.paths-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.dashboard-preview {
+    padding: 100px 0;
+}
+
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.progress-chart {
+    height: 200px;
+    background-color: #f8f9fa;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.expanded-courses {
+    padding: 100px 0;
+    background: linear-gradient(to bottom, #f0f4f8, #e8f0f8);
+}
+
+.course-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.courses {
+    padding: 100px 0;
+    background: linear-gradient(to bottom, #f0f4f8, #e8f0f8);
+}
+
+.favorites {
+    padding: 100px 0;
+}
+
+.certificates {
+    padding: 100px 0;
+}
+
+.certificates-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}

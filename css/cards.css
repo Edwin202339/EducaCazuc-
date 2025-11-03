@@ -1,0 +1,200 @@
+/* Cards */
+.card {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    margin-bottom: 24px;
+    transition: var(--transition);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Feature Cards */
+.feature-card {
+    text-align: center;
+    padding: 40px 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+.feature-icon {
+    font-size: 3.5rem;
+    color: var(--primary);
+    margin-bottom: 24px;
+}
+
+.feature-card h3 {
+    margin-bottom: 16px;
+    color: var(--dark);
+    font-size: 1.4rem;
+}
+
+/* Path Cards */
+.path-card {
+    padding: 32px;
+    border-left: 5px solid var(--primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.path-card:nth-child(2) {
+    border-left-color: var(--secondary);
+}
+
+.path-card:nth-child(3) {
+    border-left-color: var(--accent);
+}
+
+.path-card h3 {
+    margin-bottom: 16px;
+    font-size: 1.4rem;
+}
+
+.path-steps {
+    margin-top: 24px;
+}
+
+.path-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding: 12px;
+    background-color: rgba(44, 90, 160, 0.05);
+    border-radius: var(--border-radius-sm);
+    transition: var(--transition-fast);
+}
+
+.path-step:hover {
+    background-color: rgba(44, 90, 160, 0.1);
+    transform: translateX(5px);
+}
+
+.step-number {
+    width: 32px;
+    height: 32px;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.path-card:nth-child(2) .step-number {
+    background-color: var(--secondary);
+}
+
+.path-card:nth-child(3) .step-number {
+    background-color: var(--accent);
+}
+
+/* Stat Cards */
+.stat-card {
+    text-align: center;
+    padding: 24px 16px;
+    border-radius: var(--border-radius);
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+}
+
+.stat-card:nth-child(2) {
+    background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+}
+
+.stat-card:nth-child(3) {
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+}
+
+.stat-card:nth-child(4) {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Category Cards */
+.category-card {
+    padding: 30px;
+    text-align: center;
+    border-radius: var(--border-radius);
+    background: white;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.category-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.category-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--primary);
+}
+
+/* Certificate Cards */
+.certificate-card {
+    text-align: center;
+    padding: 40px 24px;
+    border: 2px dashed var(--primary);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.certificate-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.certificate-icon {
+    font-size: 3.5rem;
+    color: var(--primary);
+    margin-bottom: 24px;
+}
+
+.certificate-card h3 {
+    margin-bottom: 16px;
+    font-size: 1.4rem;
+}

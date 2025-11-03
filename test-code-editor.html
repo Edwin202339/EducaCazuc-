@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Editor de Código</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/code-editor.css">
+    
+    <style>
+        body {
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .test-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .test-header h1 {
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        
+        .test-header p {
+            color: #718096;
+            font-size: 18px;
+        }
+        
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .test-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .test-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .test-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .test-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .test-card i {
+            font-size: 32px;
+        }
+        
+        .python-card {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+        
+        .javascript-card {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+        
+        .html-card {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+        
+        .sql-card {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-header">
+            <h1><i class="fas fa-code"></i> Prueba del Editor de Código Interactivo</h1>
+            <p>Haz clic en cualquier ejercicio para abrir el editor de código</p>
+        </div>
+        
+        <div class="test-grid">
+            <div class="test-card python-card" onclick="testPythonEditor()">
+                <h3><i class="fab fa-python"></i> Python</h3>
+                <p>Crea una función de suma en Python. El editor incluye casos de prueba automáticos y retroalimentación en tiempo real.</p>
+            </div>
+            
+            <div class="test-card javascript-card" onclick="testJavaScriptEditor()">
+                <h3><i class="fab fa-js"></i> JavaScript</h3>
+                <p>Implementa una función de multiplicación. Aprende sintaxis moderna de JavaScript con ejemplos prácticos.</p>
+            </div>
+            
+            <div class="test-card html-card" onclick="testHTMLEditor()">
+                <h3><i class="fab fa-html5"></i> HTML/CSS</h3>
+                <p>Construye una estructura HTML básica. Visualiza tu código en tiempo real con validación automática.</p>
+            </div>
+            
+            <div class="test-card sql-card" onclick="testSQLEditor()">
+                <h3><i class="fas fa-database"></i> SQL</h3>
+                <p>Escribe consultas SELECT básicas. Aprende a interactuar con bases de datos de forma práctica.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal del Editor de Código -->
+    <div class="code-editor-modal" id="code-editor-modal">
+        <div class="code-editor-container">
+            <!-- Header del editor -->
+            <div class="code-editor-header">
+                <div class="editor-title">
+                    <i class="fas fa-code"></i>
+                    <span id="editor-exercise-title">Ejercicio de Programación</span>
+                </div>
+                <button class="btn-close-editor" onclick="closeCodeEditor()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Contenido del editor -->
+            <div class="code-editor-content">
+                <!-- Panel de instrucciones -->
+                <div class="editor-sidebar">
+                    <div class="editor-instructions" id="editor-instructions">
+                        <h4>Instrucciones:</h4>
+                        <p>Cargando instrucciones...</p>
+                    </div>
+                    
+                    <div class="editor-tips">
+                        <h4><i class="fas fa-lightbulb"></i> Consejos:</h4>
+                        <ul>
+                            <li>Presiona <kbd>Ctrl</kbd> + <kbd>Enter</kbd> para ejecutar</li>
+                            <li>Usa <kbd>Tab</kbd> para indentar</li>
+                            <li>Revisa los errores en el panel de salida</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Área de trabajo principal -->
+                <div class="editor-workspace">
+                    <!-- Editor de código -->
+                    <div class="code-editor-panel">
+                        <div class="editor-tabs">
+                            <div class="editor-tab active">
+                                <i class="fas fa-file-code"></i>
+                                <span id="editor-tab-name">main.py</span>
+                            </div>
+                        </div>
+                        <textarea 
+                            id="code-input" 
+                            class="code-textarea"
+                            spellcheck="false"
+                            placeholder="// Escribe tu código aquí..."
+                        ></textarea>
+                    </div>
+
+                    <!-- Panel de salida -->
+                    <div class="code-output-panel">
+                        <div class="output-header">
+                            <i class="fas fa-terminal"></i>
+                            <span>Salida / Resultados</span>
+                        </div>
+                        <div id="code-output" class="code-output">
+                            <div class="output-empty">
+                                Ejecuta tu código para ver los resultados...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acciones del editor -->
+            <div class="code-editor-actions">
+                <button class="btn-action btn-run" onclick="runCode()">
+                    <i class="fas fa-play"></i>
+                    <span>Ejecutar</span>
+                    <kbd>Ctrl+Enter</kbd>
+                </button>
+                <button class="btn-action btn-reset" onclick="resetCode()">
+                    <i class="fas fa-undo"></i>
+                    <span>Resetear</span>
+                </button>
+                <button class="btn-action btn-hint" onclick="showHint()">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Pista</span>
+                </button>
+                <button class="btn-action btn-solution" onclick="showSolution()">
+                    <i class="fas fa-eye"></i>
+                    <span>Ver Solución</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/code-editor.js"></script>
+    
+    <script>
+        // Simular un curso actual para el test
+        let currentCourse = {
+            id: 1,
+            title: 'Curso de Programación',
+            category: 'desarrollo',
+            materials: []
+        };
+        
+        let currentMaterialIndex = 0;
+        
+        function testPythonEditor() {
+            currentCourse.title = 'Python para Principiantes';
+            currentCourse.category = 'desarrollo';
+            
+            const material = {
+                type: 'exercise',
+                title: 'Ejercicios de Python',
+                tasks: ['Función de suma básica'],
+                exercises: 1,
+                completed: 0
+            };
+            
+            openCodeEditor(0, material);
+            document.getElementById('editor-tab-name').textContent = 'main.py';
+        }
+        
+        function testJavaScriptEditor() {
+            currentCourse.title = 'JavaScript Moderno';
+            currentCourse.category = 'desarrollo';
+            
+            const material = {
+                type: 'exercise',
+                title: 'Ejercicios de JavaScript',
+                tasks: ['Función de multiplicación'],
+                exercises: 1,
+                completed: 0
+            };
+            
+            openCodeEditor(0, material);
+            document.getElementById('editor-tab-name').textContent = 'main.js';
+        }
+        
+        function testHTMLEditor() {
+            currentCourse.title = 'HTML y CSS Fundamentales';
+            currentCourse.category = 'desarrollo';
+            
+            const material = {
+                type: 'exercise',
+                title: 'Ejercicios de HTML',
+                tasks: ['Estructura HTML básica'],
+                exercises: 1,
+                completed: 0
+            };
+            
+            openCodeEditor(0, material);
+            document.getElementById('editor-tab-name').textContent = 'index.html';
+        }
+        
+        function testSQLEditor() {
+            currentCourse.title = 'SQL y Bases de Datos';
+            currentCourse.category = 'software';
+            
+            const material = {
+                type: 'exercise',
+                title: 'Ejercicios de SQL',
+                tasks: ['Consulta SELECT básica'],
+                exercises: 1,
+                completed: 0
+            };
+            
+            openCodeEditor(0, material);
+            document.getElementById('editor-tab-name').textContent = 'query.sql';
+        }
+        
+        function completeCurrentExercise() {
+            console.log('Ejercicio completado!');
+        }
+    </script>
+</body>
+</html>

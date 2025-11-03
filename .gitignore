@@ -1,0 +1,43 @@
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores e IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node modules (si se usa npm en el futuro)
+node_modules/
+package-lock.json
+
+# Archivos de log
+*.log
+npm-debug.log*
+
+# Archivos temporales
+*.tmp
+*.temp
+.cache/
+
+# Variables de entorno (cuando se implemente backend)
+.env
+.env.local
+.env.*.local
+
+# Archivos de build (cuando se implemente)
+dist/
+build/
+*.min.js
+*.min.css
+
+# Archivos de base de datos local
+*.db
+*.sqlite
+
+# Backups
+*.bak
+backup/

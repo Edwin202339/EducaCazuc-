@@ -1,0 +1,260 @@
+/* Estilos para el certificado */
+.certificate-preview {
+    background: white;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: var(--shadow-lg);
+}
+
+.certificate-border {
+    border: 8px solid var(--primary);
+    padding: 5px;
+    background: linear-gradient(135deg, rgba(44, 90, 160, 0.05), rgba(255, 87, 34, 0.05));
+}
+
+.certificate-inner {
+    border: 2px solid var(--accent);
+    padding: 40px;
+    background: white;
+}
+
+.certificate-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.certificate-logo {
+    font-size: 3.5rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.certificate-brand {
+    font-size: 2.5rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.certificate-subtitle {
+    font-size: 0.9rem;
+    color: var(--dark-light);
+    margin: 0;
+}
+
+.certificate-divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    margin: 20px 0;
+}
+
+.certificate-title-main {
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--primary);
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin: 30px 0;
+}
+
+.certificate-content {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.certificate-text {
+    font-size: 1rem;
+    color: var(--dark-light);
+    margin: 10px 0;
+}
+
+.certificate-student-name {
+    font-size: 2rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin: 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary);
+    display: inline-block;
+    min-width: 300px;
+}
+
+.certificate-course-name {
+    font-size: 1.5rem;
+    color: var(--accent);
+    font-weight: 700;
+    margin: 15px 0 30px;
+}
+
+.certificate-details {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    color: var(--dark);
+}
+
+.detail-item i {
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+.certificate-verification {
+    margin-top: 30px;
+    padding: 15px;
+    background: rgba(44, 90, 160, 0.05);
+    border-radius: var(--border-radius-sm);
+    display: inline-block;
+}
+
+.certificate-verification i {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-right: 10px;
+}
+
+.certificate-verification span {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: var(--dark);
+    font-weight: 600;
+}
+
+.certificate-signatures {
+    display: flex;
+    justify-content: space-around;
+    margin: 40px 0 20px;
+    padding: 0 40px;
+}
+
+.signature {
+    text-align: center;
+}
+
+.signature-line {
+    width: 200px;
+    height: 2px;
+    background-color: var(--dark);
+    margin-bottom: 10px;
+}
+
+.signature-name {
+    font-size: 0.95rem;
+    color: var(--dark);
+    font-weight: 600;
+    margin: 0;
+}
+
+.certificate-footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.certificate-footer p {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin: 5px 0;
+    font-style: italic;
+}
+
+.certificate-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.certificate-actions button {
+    min-width: 180px;
+}
+
+/* Modal para certificado */
+#certificate-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 2001;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+#certificate-modal .modal-content {
+    background: transparent;
+    max-width: 1000px;
+    width: 100%;
+    box-shadow: none;
+}
+
+#certificate-modal .modal-header {
+    display: none;
+}
+
+#certificate-modal .modal-body {
+    padding: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .certificate-inner {
+        padding: 20px;
+    }
+    
+    .certificate-brand {
+        font-size: 1.8rem;
+    }
+    
+    .certificate-title-main {
+        font-size: 1.3rem;
+    }
+    
+    .certificate-student-name {
+        font-size: 1.5rem;
+        min-width: 200px;
+    }
+    
+    .certificate-course-name {
+        font-size: 1.2rem;
+    }
+    
+    .certificate-details {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .certificate-signatures {
+        flex-direction: column;
+        gap: 30px;
+        padding: 0 20px;
+    }
+    
+    .signature-line {
+        width: 150px;
+        margin: 0 auto 10px;
+    }
+    
+    .certificate-actions {
+        flex-direction: column;
+    }
+    
+    .certificate-actions button {
+        width: 100%;
+    }
+}

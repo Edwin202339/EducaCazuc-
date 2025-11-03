@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Botones de Materiales</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/materials.css">
+    
+    <style>
+        body {
+            padding: 40px;
+            background: #f5f7fa;
+        }
+        
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #2d3748;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .info-box {
+            background: #e6f3ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1><i class="fas fa-flask"></i> Test de Botones de Materiales</h1>
+        
+        <div class="info-box">
+            <p><strong>Instrucciones:</strong></p>
+            <ul>
+                <li>Haz clic en "Ver Video" o "Practicar" en cualquier material</li>
+                <li>Deberías ser redirigido al course-viewer.html con el material cargado</li>
+                <li>Para ejercicios, deberías ver el editor de código abrirse automáticamente</li>
+            </ul>
+        </div>
+        
+        <div id="materials-container"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/materials.js"></script>
+    
+    <script>
+        // Cargar el primer curso como ejemplo
+        const testCourse = courses[0]; // Arduino
+        const materialsHTML = renderMaterials(testCourse);
+        document.getElementById('materials-container').innerHTML = materialsHTML;
+        
+        console.log('Curso de prueba cargado:', testCourse.title);
+        console.log('Materiales:', testCourse.materials.length);
+    </script>
+</body>
+</html>

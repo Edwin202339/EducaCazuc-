@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visor de Curso - EducaCazucá</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/course-viewer.css">
+    <link rel="stylesheet" href="css/code-editor.css">
+</head>
+<body>
+    <!-- Header del curso -->
+    <header class="course-header">
+        <div class="course-header-container">
+            <div class="course-back">
+                <a href="index.html" class="btn-back">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Volver a inicio</span>
+                </a>
+            </div>
+            <div class="course-header-info">
+                <h1 id="course-title">Cargando curso...</h1>
+                <div class="course-meta">
+                    <span class="course-category" id="course-category"></span>
+                    <span class="course-level" id="course-level"></span>
+                    <span class="course-duration" id="course-duration"></span>
+                </div>
+            </div>
+            <div class="course-progress-header">
+                <div class="progress-circle" id="progress-circle">
+                    <svg width="60" height="60">
+                        <circle cx="30" cy="30" r="25" class="progress-bg"></circle>
+                        <circle cx="30" cy="30" r="25" class="progress-bar" id="progress-bar"></circle>
+                    </svg>
+                    <div class="progress-text" id="progress-text">0%</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <div class="course-viewer-container">
+        <!-- Sidebar con materiales -->
+        <aside class="course-sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-list"></i> Contenido del Curso</h2>
+            </div>
+            <div class="materials-sidebar-list" id="materials-sidebar">
+                <!-- Los materiales se cargan aquí -->
+            </div>
+        </aside>
+
+        <!-- Área de visualización del contenido -->
+        <main class="course-content">
+            <div class="content-viewer" id="content-viewer">
+                <div class="welcome-screen">
+                    <div class="welcome-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h2>¡Bienvenido al curso!</h2>
+                    <p>Selecciona un material del menú lateral para comenzar tu aprendizaje.</p>
+                    <div class="welcome-stats">
+                        <div class="stat-card">
+                            <i class="fas fa-video"></i>
+                            <div>
+                                <strong id="total-videos">0</strong>
+                                <span>Videos</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-file-pdf"></i>
+                            <div>
+                                <strong id="total-pdfs">0</strong>
+                                <span>Documentos</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-pencil-alt"></i>
+                            <div>
+                                <strong id="total-exercises">0</strong>
+                                <span>Ejercicios</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-clipboard-check"></i>
+                            <div>
+                                <strong id="total-quizzes">0</strong>
+                                <span>Evaluaciones</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controles de navegación -->
+            <div class="content-navigation" id="content-navigation" style="display: none;">
+                <button class="btn-nav btn-prev" id="btn-prev" disabled>
+                    <i class="fas fa-chevron-left"></i>
+                    <span>Anterior</span>
+                </button>
+                <button class="btn-nav btn-complete" id="btn-complete">
+                    <i class="fas fa-check"></i>
+                    <span>Marcar como completado</span>
+                </button>
+                <button class="btn-nav btn-next" id="btn-next">
+                    <span>Siguiente</span>
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal de confirmación de completado -->
+    <div class="completion-modal" id="completion-modal">
+        <div class="completion-modal-content">
+            <div class="completion-icon">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <h2>¡Felicitaciones!</h2>
+            <p>Has completado todos los materiales del curso</p>
+            <h3 id="completed-course-title"></h3>
+            <div class="completion-actions">
+                <button class="btn-primary" onclick="descargarCertificado()">
+                    <i class="fas fa-download"></i> Descargar Certificado
+                </button>
+                <button class="btn-outline" onclick="volverInicio()">
+                    <i class="fas fa-home"></i> Volver a Inicio
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal del Editor de Código -->
+    <div class="code-editor-modal" id="code-editor-modal">
+        <div class="code-editor-container">
+            <!-- Header del editor -->
+            <div class="code-editor-header">
+                <div class="editor-title">
+                    <i class="fas fa-code"></i>
+                    <span id="editor-exercise-title">Ejercicio de Programación</span>
+                </div>
+                <button class="btn-close-editor" onclick="closeCodeEditor()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Contenido del editor -->
+            <div class="code-editor-content">
+                <!-- Panel de instrucciones -->
+                <div class="editor-sidebar">
+                    <div class="editor-instructions" id="editor-instructions">
+                        <h4>Instrucciones:</h4>
+                        <p>Cargando instrucciones...</p>
+                    </div>
+                    
+                    <div class="editor-tips">
+                        <h4><i class="fas fa-lightbulb"></i> Consejos:</h4>
+                        <ul>
+                            <li>Presiona <kbd>Ctrl</kbd> + <kbd>Enter</kbd> para ejecutar</li>
+                            <li>Usa <kbd>Tab</kbd> para indentar</li>
+                            <li>Revisa los errores en el panel de salida</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Área de trabajo principal -->
+                <div class="editor-workspace">
+                    <!-- Editor de código -->
+                    <div class="code-editor-panel">
+                        <div class="editor-tabs">
+                            <div class="editor-tab active">
+                                <i class="fas fa-file-code"></i>
+                                <span>main.py</span>
+                            </div>
+                        </div>
+                        <textarea 
+                            id="code-input" 
+                            class="code-textarea"
+                            spellcheck="false"
+                            placeholder="// Escribe tu código aquí..."
+                        ></textarea>
+                    </div>
+
+                    <!-- Panel de salida -->
+                    <div class="code-output-panel">
+                        <div class="output-header">
+                            <i class="fas fa-terminal"></i>
+                            <span>Salida / Resultados</span>
+                        </div>
+                        <div id="code-output" class="code-output">
+                            <div class="output-empty">
+                                Ejecuta tu código para ver los resultados...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acciones del editor -->
+            <div class="code-editor-actions">
+                <button class="btn-action btn-run" onclick="runCode()">
+                    <i class="fas fa-play"></i>
+                    <span>Ejecutar</span>
+                    <kbd>Ctrl+Enter</kbd>
+                </button>
+                <button class="btn-action btn-reset" onclick="resetCode()">
+                    <i class="fas fa-undo"></i>
+                    <span>Resetear</span>
+                </button>
+                <button class="btn-action btn-hint" onclick="showHint()">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Pista</span>
+                </button>
+                <button class="btn-action btn-solution" onclick="showSolution()">
+                    <i class="fas fa-eye"></i>
+                    <span>Ver Solución</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts JavaScript -->
+    <script src="js/data.js"></script>
+    <script src="js/course-viewer.js"></script>
+    <script src="js/code-editor.js"></script>
+</body>
+</html>

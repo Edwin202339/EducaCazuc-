@@ -1,0 +1,80 @@
+/* Notificaciones */
+.notificacion {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    min-width: 320px;
+    max-width: 400px;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    padding: 16px 20px;
+    z-index: 3000;
+    transform: translateX(400px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    border-left: 5px solid var(--success);
+}
+
+.notificacion-success {
+    border-left-color: var(--success);
+}
+
+.notificacion-info {
+    border-left-color: var(--primary);
+}
+
+.notificacion-warning {
+    border-left-color: var(--warning);
+}
+
+.notificacion-error {
+    border-left-color: var(--danger);
+}
+
+.notificacion-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: var(--dark);
+}
+
+.notificacion-header i {
+    font-size: 1.3rem;
+}
+
+.notificacion-success .notificacion-header i {
+    color: var(--success);
+}
+
+.notificacion-info .notificacion-header i {
+    color: var(--primary);
+}
+
+.notificacion-warning .notificacion-header i {
+    color: var(--warning);
+}
+
+.notificacion-error .notificacion-header i {
+    color: var(--danger);
+}
+
+.notificacion-body {
+    font-size: 0.9rem;
+    color: var(--dark-light);
+    line-height: 1.5;
+    margin-left: 33px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .notificacion {
+        top: 70px;
+        right: 10px;
+        left: 10px;
+        min-width: auto;
+        max-width: none;
+    }
+}
